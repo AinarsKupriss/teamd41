@@ -87,9 +87,58 @@ class WorkerController extends Controller
     public function deleteWorker($id){
         if(Auth::user()->status == 2 ){
 
-
+            DB::table('users')->where('id', '=', $id)->delete();
 
             Session::flash('message-worker-deleted', "Darbinieks veiksmīgi dzēsts!");
+            return redirect('/worker');
+        }else{
+            redirect('/');
+        }
+    }
+
+    public function getEditPage($id){
+        if(Auth::user()->status == 2){
+            $worker = DB::table('users')->where('id', '=', $id)->get();
+            return view('worker.edit')->with('worker', $worker[0]);
+        }else{
+            redirect('/worker');
+        }
+    }
+
+    public function editWorker($id){
+        if(Auth::user()->status == 2 ){
+
+            //Input
+            $data = Input::except(array('_token'));
+
+            //Validation rules
+            $rule = array(
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'password' => 'required',
+                'email' => 'required'
+            );
+
+            //Validation messages
+            $messages = array(
+                'required' => 'Netika aizpildīti visi lauki!',
+            );
+
+            //Validates
+            $validator = Validator::make($data, $rule, $messages);
+
+
+            //Saving new data
+            DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'firstname' => $data["firstname"],
+                    'lastname' => $data["lastname"],
+                    'password' => bcrypt($data["firstname"]),
+                    'email' => $data["email"]
+                ]);
+
+            Session::flash('message-worker-edited', "Darbinieks veiksmīgi rediģēts!");
             return redirect('/worker');
         }else{
             redirect('/');

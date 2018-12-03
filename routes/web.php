@@ -29,7 +29,9 @@ Route::prefix('worker')->group(function () {
 
     Route::get('/delete/{id}', 'WorkerController@deleteWorker');
 
-    Route::get('/edit/{id}', 'WorkerController@editWorker');
+    Route::get('/edit/{id}', 'WorkerController@getEditPage');
+
+    Route::post('/edit/{id}', 'WorkerController@editWorker');
 });
 
 //Admin page
