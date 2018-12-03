@@ -6,6 +6,9 @@
  */
 
 require('./bootstrap');
+require('./agency.min');
+require('jquery');
+require('jquery.easing');
 
 window.Vue = require('vue');
 
