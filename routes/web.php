@@ -36,5 +36,8 @@ Route::prefix('worker')->group(function () {
 
 //Admin page
 Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@getAdminHome');
+
+    Route::put('/update/{id}', 'AdminController@updateUser');
 
 });
