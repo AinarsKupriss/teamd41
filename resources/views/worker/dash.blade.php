@@ -130,6 +130,73 @@
                         @endforeach
                     </div>
                 </div>
+
+                <br>
+
+                <div class="card">
+                    <div class="card-header">Eksistējošie projekti</div>
+
+                    <div class="card-body">
+                        @foreach($projects as $project)
+                            <div>
+                                <ul>
+                                    <li>{{ $project->name}} </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="card">
+                    <div class="card-header">Pievienot jaunu projektu</div>
+
+                    <div class="card-body">
+                        @if(Session::has('message-project-added'))
+                            <p class="alert alert-info">{{ Session::get('message-project-added') }}</p>
+                        @endif
+                        <form method="post" action="/worker/addProject" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Projekta nosaukums:</label>
+
+                                <div class="col-md-6">
+                                    <input class="form-control" id="name" type="text" name="name" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="desc" class="col-md-4 col-form-label text-md-right">Projekta apraksts:</label>
+
+                                <div class="col-md-6">
+                                    <textarea class="form-control" id="desc" type="text" name="desc" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="price" class="col-md-4 col-form-label text-md-right">Projekta cena:</label>
+
+                                <div class="col-md-6">
+                                    <input class="form-control" id="price" type="text" name="price" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="image" class="col-md-4 col-form-label text-md-right">Projekta bilde:</label>
+
+                                <div class="col-md-6">
+                                    <input class="form-control" id="image" type="file" name="image" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Pievienot
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

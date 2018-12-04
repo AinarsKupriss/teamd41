@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Project;
 
 class WorkerController extends Controller
 {
@@ -17,7 +18,8 @@ class WorkerController extends Controller
     {
         if(Auth::user()->status == 2 ){
             $workers = DB::table('users')->where('status' , '=', 2)->get();
-            return view('worker.dash')->with('workers', $workers);
+            $projects = DB::table('projects')->where('status' , '=', 1)->get();
+            return view('worker.dash')->with('workers', $workers)->with('projects', $projects);
         }else{
             redirect('/');
         }
@@ -145,4 +147,64 @@ class WorkerController extends Controller
         }
     }
 
+    public function addProject(Request $request){
+        if(Auth::user()->status == 2 ){
+
+            //Input
+            $data = Input::except(array('_token'));
+
+            //Validation rules
+            $rule = array(
+                'name' => 'required',
+                'desc' => 'required',
+                'price' => 'required',
+                'iamge' => 'required'
+            );
+
+            //Validation messages
+            $messages = array(
+                'required' => 'Netika aizpildīti visi lauki!',
+            );
+
+            //Validates
+            $validator = Validator::make($data, $rule, $messages);
+
+            //Creates a new project
+            $project = new Project;
+            $project->name = $data["name"];
+            $project->desc = $data["desc"];
+            $project->image = $data["image"];
+            $project->price = $data["price"];
+            $project->status = '1';
+
+            ///Saves the new project
+            $project->save();
+
+
+            //Sets name for file before storing it
+            $fileid = DB::table('projects')->where([
+                ['name', '=', $data['name']],
+                ['desc', '=', $data['desc']],
+                ['image', '=', $data['image']],
+            ])->get();
+
+            //Saves file
+            $file = $request->file('image')->storeAs(
+                'public/stored_projects', $fileid[0]->id. '.jpg'
+            );
+
+            //Sets correct filename when saving database
+            DB::table('projects')
+                ->where('id', $fileid[0]->id)
+                ->update(['image' => 'stored_projects/' . $fileid[0]->id . '.jpg']);
+
+
+            //Paziņojums par veikto darbību
+            Session::flash('message-project-added', "Projekts veiksmīgi pievienots!");
+            return redirect()->back();
+
+        }else{
+            redirect('/');
+        }
+    }
 }

@@ -32,6 +32,8 @@ Route::prefix('worker')->group(function () {
     Route::get('/edit/{id}', 'WorkerController@getEditPage');
 
     Route::post('/edit/{id}', 'WorkerController@editWorker');
+
+    Route::post('/addProject', 'WorkerController@addProject');
 });
 
 //Admin page
