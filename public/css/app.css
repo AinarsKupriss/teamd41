@@ -10647,14 +10647,18 @@ img::-moz-selection {
   }
 }
 
-#login {
+.custom-section {
   background-color: #212529;
   min-height: 1000px;
   padding-top: 15%;
 }
 
-#login h2,
-#login label {
+.custom-section h2 {
+  color: #fed136;
+}
+
+#loginPage label,
+#registerPage label {
   color: #fed136;
 }
 

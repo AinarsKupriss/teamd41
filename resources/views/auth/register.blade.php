@@ -3,10 +3,7 @@
 @section('content')
 
     <div class="content">
-
-
-        <!-- Services -->
-        <section id="login">
+        <section class="custom-section" id="registerPage">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">

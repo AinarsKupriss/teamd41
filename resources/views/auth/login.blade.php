@@ -3,10 +3,7 @@
 @section('content')
 
     <div class="content">
-
-
-        <!-- Services -->
-        <section id="login">
+        <section class="custom-section" id="loginPage">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -71,6 +68,5 @@
                 </div>
             </div>
         </section>
-
 </div>
 @endsection

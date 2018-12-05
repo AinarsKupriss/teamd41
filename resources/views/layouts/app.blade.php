@@ -14,7 +14,6 @@
 
 
     <!-- Aināra inline scripts -->
-
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -28,13 +27,13 @@
             $('[data-show]').each(function (e) {
                 var $thisElement = $(this);
                 var $relatedElement = $('[data-showable="' + $thisElement.data('show') + '"]');
-                
+
                 //On trigger click
                 $thisElement.find('[data-show-trigger]').each(function () {
                     $(this).click(function () {
                         //Show the showable field
                         $relatedElement.slideDown();
-                        
+
                         //Add required to the showable field
                         $relatedElement.find('[data-add-required]').each(function () {
                             $(this).prop('required',true);
@@ -94,11 +93,6 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
                                 @if(Auth::check())
                                     <a class="dropdown-item" href="/profile">Mans profils</a>
                                 @endif
@@ -109,7 +103,11 @@
                                     <a class="dropdown-item" href="/admin">Administrators</a>
                                 @endif
 
-
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Iziet') }}
+                                </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     @csrf
@@ -123,6 +121,7 @@
     </nav>
 
      @yield('content')
+
     <footer>
         <div class="container">
             <div class="row">

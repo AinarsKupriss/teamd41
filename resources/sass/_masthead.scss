@@ -1,12 +1,18 @@
 // Styling for the masthead
-#login{
+.custom-section{
   background-color: $gray-900;
   min-height:1000px;
   padding-top:15%;
-  h2, label{
+  h2{
     color:$primary;
   }
 }
+#loginPage, #registerPage{
+  label{
+    color:$primary;
+  }
+}
+
 header.masthead {
   text-align: center;
   color: white;
