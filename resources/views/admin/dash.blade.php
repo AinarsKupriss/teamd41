@@ -2,51 +2,61 @@
 
 @section('content')
     <div class="container">
-        @foreach($users as $user)
+
         <div class="card">
             <div class="card-header">
-               {{$user->firstname}}  {{$user->lastname}}
+               Lietotāji
             </div>
+            <div class="card-body">
+                @if(Session::has('message-worker-edited'))
+                    <p class="alert alert-info">{{ Session::get('message-worker-edited') }}</p>
+                @endif
+                @foreach($users as $user)
 
-            {{--<div class="row">--}}
-                {{--<div class="col">--}}
-                    {{--E-Pasts: {{$user->email}}--}}
-                {{--</div>--}}
+                    {!! Form::open(['action' => ['AdminController@updateUser', $user->id], 'method' => 'POST']) !!}
 
-            {{--</div>--}}
+                        <div class="form-group row">
+                            {{Form::label('firstname', 'Vārds:', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                            <div class="col-md-6">
+                                {{Form::text('firstname', $user->firstname, ['class' => 'form-control'])}}
+                            </div>
+                        </div>
 
-            {!! Form::open(['action' => ['AdminController@updateUser', $user->id], 'method' => 'POST']) !!}
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        {{Form::label('firstname', 'Vārds')}}
-                        {{Form::text('firstname', $user->firstname, ['class' => 'form-control'])}}
+                        <div class="form-group row">
+                            {{Form::label('lastname', 'Uzvārds', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                            <div class="col-md-6">
+                                {{Form::text('lastname', $user->lastname, ['class' => 'form-control'])}}
+                            </div>
+                        </div>
+
+
+                    <div class="col">
+                        <div class="form-group row">
+                            {{Form::label('email', 'Ē-Pasts', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                            <div class="col-md-6">
+                                {{Form::email('email', $user->email, ['class' => 'form-control'])}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{Form::label('status', 'Amats:', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                            <div class="col-md-6">
+                                {{Form::select('status', ['1' => 'Lietotājs', '2' => 'Darbinieks', '3' => 'Administrators'], $user->status, ['class' => 'form-control'])}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {{Form::label('lastname', 'Uzvārds')}}
-                        {{Form::text('lastname', $user->lastname, ['class' => 'form-control'])}}
+
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            {{Form::hidden('_method', 'PUT')}}
+                            {{Form::submit('Mainīt', ['class' => 'btn btn-primary'])}}
+                            {!! Form::close() !!}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {{Form::label('email', 'Ē-Pasts')}}
-                        {{Form::email('email', $user->email, ['class' => 'form-control'])}}
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('status', 'Amats:')}}
-                        {{Form::select('status', ['1' => 'Lietotājs', '2' => 'Darbinieks', '3' => 'Administrators'], $user->status, ['class' => 'form-control'])}}
-                    </div>
-                </div>
+                    <hr>
+                @endforeach
             </div>
-            <hr>
-            <div class="row">
-                <div class="col">
-                    {{Form::hidden('_method', 'PUT')}}
-                    {{Form::submit('Mainīt', ['class' => 'btn btn-success btn-block'])}}
-                    {!! Form::close() !!}
-                </div>
-            </div>
-
         </div>
-        @endforeach
+
 
     </div>
 

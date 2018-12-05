@@ -3,11 +3,6 @@
 @section('content')
 
     <div class="container">
-        {{--{{$user}}--}}
-        {{--{{$user}}--}}
-        {{--@foreach($user as $as)--}}
-        {{--{{$as->custom_projects}}--}}
-        {{--@endforeach--}}
 
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -16,6 +11,9 @@
                         Mans profils
                     </div>
                     <div class="card-body">
+                        @if(Session::has('message-profile-edited'))
+                            <p class="alert alert-info">{{ Session::get('message-profile-edited') }}</p>
+                        @endif
                         <h1><strong>{{$user->firstname}} {{$user->lastname}}</strong></h1>
                         <p>{{$user->email}}</p>
                         <a href="/editprofile" class="btn btn-primary">Rediģet</a>
@@ -24,26 +22,59 @@
 
                 <br>
                 <div class="card">
-                    <div class="card-header">Mani projekti <a href="/newcustomproject"
-                                                              class="btn btn-primary">Pievienot</a></div>
+                    <div class="card-header">
+                        Mani projekti <a href="/newcustomproject" class="btn btn-primary">Pievienot</a>
+                    </div>
                     @if(isset($projects))
                         <div class="card-body">
+                            @if(Session::has('message-custom-project-added'))
+                                <p class="alert alert-info">{{ Session::get('message-custom-project-added') }}</p>
+                            @endif
+
+                            @if(Session::has('message-custom-project-added'))
+                                <p class="alert alert-info">{{ Session::get('message-custom-project-edit') }}</p>
+                            @endif
                             @foreach($projects as $project)
-                                <div class="col">
-                                    <h2>{{ $project->name}}</h2>
-                                    <p>{{ $project->desc }}</p>
-                                    <p>{{ $project->price }} EUR</p>
-                                    @if($project->status == 3)
-                                        <p>Status : <b>Apstrāde</b></p>
-                                    @endif
-                                    @if($project->status == 2)
-                                        <p>Status : <b>Noraidīts</b></p>
-                                    @endif
-                                    @if($project->status == 1)
-                                        <p>Status : <b>Apstiprināts</b></p>
-                                    @endif
+                                <div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-4">
+                                            <div>
+                                                <b>Projekta nosaukums:</b>
+                                            </div>
+                                            <div>{{ $project->name}}</div>
+                                            <div>
+                                                <b>Apraksts:</b>
+                                            </div>
+                                            <div>{{ $project->desc}}</div>
+                                            <div>
+                                                <b>Cena:</b>
+                                            </div>
+                                            <div>{{ $project->price}} EUR</div>
+                                            <div>
+                                                <b>Statuss:</b>
+                                            </div>
+                                            @if($project->status == 3)
+                                               <div class="text-warning">Apstrāde</div>
+                                            @endif
+                                            @if($project->status == 2)
+                                                <div class="text-danger">Noraidīts</div>
+                                            @endif
+                                            @if($project->status == 1)
+                                                <div class="text-success">Apstiprināts</div>
+                                            @endif
+                                            @if($project->status == 3 && $project->projstatus == 2)
+                                                <div><b>Darbibas</b></div>
+                                                <div>
+                                                    <a href="/editcustomproject/{{$project->id}}" class="btn btn-primary">Rediģet</a>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <img src="storage/{{ $project->image}}" alt="img" height="100%" width="100%">
+                                        </div>
+                                    </div>
                                 </div>
-                                <br>
+                                <hr>
                             @endforeach
                         </div>
                     @endif

@@ -31,7 +31,7 @@ class User extends Authenticatable
     ];
 
     public function customProjects(){
-        return $this->belongsToMany('App\Project', 'orders', 'userid', 'projectid')
-            ->withPivot('status');
+        return $this->belongsToMany('App\Project', 'orders', 'userid', 'projectid', 'id', 'id')
+            ->withPivot('status', 'id');
     }
 }

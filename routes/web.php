@@ -31,6 +31,9 @@ Route::put('/editprofile', 'UserController@editUser');
 
 Route::get('/newcustomproject', 'UserController@getCustomProjectPage');
 Route::post('/addcustomproject', 'UserController@addCustomProject');
+Route::get('/editcustomproject/{projectID}', 'UserController@geteditCustomProjectPage');
+Route::put('/editcustomproject/{projectID}', 'UserController@editCustomProject');
+//Route::post('/deletecustomproject/{projectID}', 'UserController@deleteCustomProject');
 
 Route::get('/allprojects', 'UserController@getProjectPage');
 Route::post('/addprojecttoorder/{projectID}', 'UserController@addProjectToOrder');

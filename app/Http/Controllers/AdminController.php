@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -29,7 +30,7 @@ class AdminController extends Controller
             $user->status = $request->input('status');
             $user->save();
 
-//            Session::flash('message-worker-added', "Darbinieks veiksmīgi rediģēts!");
+            Session::flash('message-worker-edited', "Darbinieks veiksmīgi rediģēts!");
             return redirect()->back();
         }else{
             redirect('/');
