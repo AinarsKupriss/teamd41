@@ -24,7 +24,8 @@
                                     @csrf
 
                                     <div class="form-group row">
-                                        <label for="firstname" class="col-md-4 col-form-label text-md-right">Vārds</label>
+                                        <label for="firstname"
+                                               class="col-md-4 col-form-label text-md-right">Vārds</label>
 
                                         <div class="col-md-6">
                                             <input id="firstname" type="text"
@@ -40,7 +41,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="lastname" class="col-md-4 col-form-label text-md-right">Uzvārds</label>
+                                        <label for="lastname"
+                                               class="col-md-4 col-form-label text-md-right">Uzvārds</label>
 
                                         <div class="col-md-6">
                                             <input id="lastname" type="text"
@@ -72,7 +74,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">Parole</label>
+                                        <label for="password"
+                                               class="col-md-4 col-form-label text-md-right">Parole</label>
 
                                         <div class="col-md-6">
                                             <input id="password" type="password"
@@ -167,22 +170,25 @@
                                                                class="btn btn-primary">Labot</a>
                                                             <a href="/worker/delete-project/{{$project->id}}"
                                                                class="btn btn-primary">Dzēst</a>
+                                                        </div>
+                                                        <div>
                                                             @if($project->status == 3)
                                                                 Projekts ir atslēgts
-
+                                                                <br>
                                                                 <a href="/worker/enable-project/{{$project->id}}"
                                                                    class="btn btn-primary">Ieslēgt</a>
                                                             @endif
                                                             @if($project->status == 1)
                                                                 Projekts ir ieslēgts
-
+                                                                <br>
                                                                 <a href="/worker/disable-project/{{$project->id}}"
                                                                    class="btn btn-primary">Atslēgt</a>
                                                             @endif
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-8">
-                                                        <img src="storage/{{ $project->image}}" alt="img">
+                                                        <img src="storage/{{ $project->image}}" alt="img"
+                                                             style="height: 250px;width: 200px;object-fit: cover;">
                                                     </div>
                                                 </div>
                                             </li>
@@ -233,7 +239,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group row">
-                                        <label for="price" class="col-md-4 col-form-label text-md-right">Projekta cena:</label>
+                                        <label for="price" class="col-md-4 col-form-label text-md-right">Projekta
+                                            cena:</label>
 
                                         <div class="col-md-6">
                                             <input class="form-control {{ $errors->has('price') ? ' is-invalid' : '' }}"
@@ -246,10 +253,11 @@
                                         @endif
                                     </div>
                                     <div class="form-group row">
-                                        <label for="image" class="col-md-4 col-form-label text-md-right">Projekta bilde:</label>
+                                        <label for="image" class="col-md-4 col-form-label text-md-right">Projekta
+                                            bilde:</label>
 
                                         <div class="col-md-6">
-                                            <input class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}"
+                                            <input class=" {{ $errors->has('image') ? ' is-invalid' : '' }}"
                                                    id="image" type="file" name="image" required>
                                         </div>
                                         @if ($errors->has('image'))
@@ -293,10 +301,12 @@
                                         </div>
                                         <div class="col-12">
                                             <a class="btn btn-success" href="/worker/accept-order/{{$order->id}}">Pieņemt</a>
-                                            <a class="btn btn-danger" href="/worker/deny-order/{{$order->id}}">Noraidīt</a>
+                                            <a class="btn btn-danger"
+                                               href="/worker/deny-order/{{$order->id}}">Noraidīt</a>
                                         </div>
                                     </div>
                                     <br>
+                                    <hr>
                                 @endforeach
                             </div>
                         </div>

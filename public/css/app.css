@@ -10574,6 +10574,20 @@ img::-moz-selection {
   background: transparent;
 }
 
+ul {
+  list-style: none;
+}
+
+.parsley-errors-list {
+  list-style: none;
+  padding: 0;
+}
+
+.parsley-errors-list li {
+  color: #900000;
+  font-weight: 600;
+}
+
 #mainNav {
   background-color: #212529;
 }

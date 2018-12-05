@@ -72,7 +72,7 @@
                                     <div class="form-group row">
                                         <div for="image" class="col-md-4 col-form-label text-md-right">Bilde</div>
                                     </div>
-                                    <img src="/storage/{{$project->image}}" alt="img">
+                                    <img style="height: 250px;width: 200px;object-fit: cover;" src="/storage/{{$project->image}}" alt="img">
 
                                     <button type="button" class="btn btn-primary" data-show-trigger>Mainīt bildi</button>
                                 </div>
