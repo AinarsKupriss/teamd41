@@ -8,16 +8,23 @@ use App\Project;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class UserController extends Controller
 {
     public function getUserHome()
     {
-        if(Auth::user()->status == 1 ){
+        if(Auth::check()){
             $authID = Auth::id();
             $user = User::where('id', $authID)->with('customProjects')->first();
-            $projects = Project::all();
+            $projects = DB::table('orders')
+                ->select('orders.id','projects.name','projects.desc','projects.image','projects.price','users.firstname','users.lastname','orders.status')
+                ->join('users', 'users.id', '=', 'orders.userid')
+                ->join('projects', 'projects.id', '=', 'orders.projectid')
+                ->where('orders.userid', '=', $authID)
+                ->get();
+
             return view('user.dash')->with(['user' => $user, 'projects' => $projects]);
         }else{
             redirect('/');
@@ -31,15 +38,26 @@ class UserController extends Controller
     }
 
     public function getCustomProjectPage(){
-        if(Auth::user()->status == 1 ){
+        if(Auth::check()){
             return view('user.addcustomproject');
         }else{
             redirect('/');
         }
     }
 
+    public function getOrderPage(){
+        if(Auth::check()){
+            //Gets data from DB
+            $projects = DB::table('projects')->where('status' ,'=', 1)->get();
+
+            return view('user.orders')->with('projects', $projects);
+        }else{
+            redirect('/');
+        }
+    }
+
     public function getProjectPage(){
-        if(Auth::user()->status == 1 ){
+        if(Auth::check()){
             $projects = Project::where('status', '1')->get();
             return view('user.projects')->with('projects', $projects);
         }else{
@@ -90,6 +108,7 @@ class UserController extends Controller
 
         $user_order->save();
 
+        Session::flash('message-order-added', "Pasūtījums izveidots! Lūdzu apmeklējat savu profilu, lai redzetu pasūtījuma stāvokli.");
         return redirect()->back();
     }
 }

@@ -2,12 +2,11 @@
 
 @section('content')
 
-    {{-- T0D0: jasataisa, ka rada konkreta klienta pasutijumus--}}
     <div class="container">
         {{--{{$user}}--}}
         {{--{{$user}}--}}
         {{--@foreach($user as $as)--}}
-            {{--{{$as->custom_projects}}--}}
+        {{--{{$as->custom_projects}}--}}
         {{--@endforeach--}}
 
         <div class="row justify-content-center">
@@ -25,18 +24,28 @@
 
                 <br>
                 <div class="card">
-                    <div class="card-header">Mani projekti  <a href="/newcustomproject" class="btn btn-primary">Pievienot</a></div>
+                    <div class="card-header">Mani projekti <a href="/newcustomproject"
+                                                              class="btn btn-primary">Pievienot</a></div>
                     @if(isset($projects))
-                    <div class="card-body">
-                        @foreach($projects as $project)
-                            <div class="col">
-                                <h2>{{ $project->name}}</h2>
-                                <p>{{ $project->desc }}</p>
-                                <p>{{ $project->price }}$</p>
-                            </div>
-                            <br>
-                        @endforeach
-                    </div>
+                        <div class="card-body">
+                            @foreach($projects as $project)
+                                <div class="col">
+                                    <h2>{{ $project->name}}</h2>
+                                    <p>{{ $project->desc }}</p>
+                                    <p>{{ $project->price }} EUR</p>
+                                    @if($project->status == 3)
+                                        <p>Status : <b>Apstrāde</b></p>
+                                    @endif
+                                    @if($project->status == 2)
+                                        <p>Status : <b>Noraidīts</b></p>
+                                    @endif
+                                    @if($project->status == 1)
+                                        <p>Status : <b>Apstiprināts</b></p>
+                                    @endif
+                                </div>
+                                <br>
+                            @endforeach
+                        </div>
                     @endif
                 </div>
             </div>

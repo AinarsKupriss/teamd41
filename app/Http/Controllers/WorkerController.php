@@ -12,21 +12,32 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Project;
 
+
 class WorkerController extends Controller
 {
     public function getWorkerHome()
     {
-        if(Auth::user()->status == 2 ){
-            $workers = DB::table('users')->where('status' , '=', 2)->get();
-            $projects = DB::table('projects')->where('status' , '=', 1)->get();
-            return view('worker.dash')->with('workers', $workers)->with('projects', $projects);
-        }else{
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+            $workers = DB::table('users')->where('status', '=', 2)->get();
+            $projects = DB::table('projects')->where('status', '=', 1)->orWhere('status', '=', 3)->get();
+            $orders = DB::table('orders')
+                ->select('orders.id','projects.name','projects.desc','projects.image','projects.price','users.firstname','users.lastname')
+                ->join('users', 'users.id', '=', 'orders.userid')
+                ->join('projects', 'projects.id', '=', 'orders.projectid')
+                ->where('orders.status', '=', '3')
+                ->get();
+            return view('worker.dash')
+                ->with('workers', $workers)
+                ->with('projects', $projects)
+                ->with('orders', $orders);
+        } else {
             redirect('/');
         }
     }
 
-    public function createWorker(){
-        if(Auth::user()->status == 2 ){
+    public function createWorker()
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
 
             //Input
             $data = Input::except(array('_token'));
@@ -46,6 +57,12 @@ class WorkerController extends Controller
 
             //Validates
             $validator = Validator::make($data, $rule, $messages);
+
+            if ($validator->fails()) {
+                return redirect('/worker')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
             //Creates shelter
             $worker = new User;
@@ -59,56 +76,41 @@ class WorkerController extends Controller
             //Saves worker
             $worker->save();
 
-//            //Sets name for file before storing it
-//            $fileid = DB::table('shelters')->where([
-//                ['Name', '=', $data['Name']],
-//                ['Street', '=', $data['Street']],
-//                ['Street_nr', '=', $data['Street_nr']],
-//            ])->get();
-//
-//            //Saves file
-//            $file = $request->file('Picture')->storeAs(
-//                'public/stored_shelters', $fileid[0]->ID. '.jpg'
-//            );
-//
-//            //Sets correct filename when saving database
-//            DB::table('shelters')
-//                ->where('id', $fileid[0]->ID)
-//                ->update(['Picture' => 'stored_shelters/' . $fileid[0]->ID . '.jpg']);
-
-
             //Paziņojums par veikto darbību
             Session::flash('message-worker-added', "Darbinieks veiksmīgi pievienots!");
             return redirect()->back();
 
-        }else{
+        } else {
             redirect('/');
         }
     }
 
-    public function deleteWorker($id){
-        if(Auth::user()->status == 2 ){
+    public function deleteWorker($id)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
 
             DB::table('users')->where('id', '=', $id)->delete();
 
             Session::flash('message-worker-deleted', "Darbinieks veiksmīgi dzēsts!");
             return redirect('/worker');
-        }else{
+        } else {
             redirect('/');
         }
     }
 
-    public function getEditPage($id){
-        if(Auth::user()->status == 2){
+    public function getEditPage($id)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
             $worker = DB::table('users')->where('id', '=', $id)->get();
             return view('worker.edit')->with('worker', $worker[0]);
-        }else{
+        } else {
             redirect('/worker');
         }
     }
 
-    public function editWorker($id){
-        if(Auth::user()->status == 2 ){
+    public function editWorker($id)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
 
             //Input
             $data = Input::except(array('_token'));
@@ -128,6 +130,12 @@ class WorkerController extends Controller
 
             //Validates
             $validator = Validator::make($data, $rule, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
 
             //Saving new data
@@ -142,13 +150,14 @@ class WorkerController extends Controller
 
             Session::flash('message-worker-edited', "Darbinieks veiksmīgi rediģēts!");
             return redirect('/worker');
-        }else{
+        } else {
             redirect('/');
         }
     }
 
-    public function addProject(Request $request){
-        if(Auth::user()->status == 2 ){
+    public function addProject(Request $request)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
 
             //Input
             $data = Input::except(array('_token'));
@@ -157,8 +166,8 @@ class WorkerController extends Controller
             $rule = array(
                 'name' => 'required',
                 'desc' => 'required',
-                'price' => 'required',
-                'iamge' => 'required'
+                'price' => 'required|numeric|min:0',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             );
 
             //Validation messages
@@ -168,6 +177,12 @@ class WorkerController extends Controller
 
             //Validates
             $validator = Validator::make($data, $rule, $messages);
+
+            if ($validator->fails()) {
+                return redirect('/worker')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
             //Creates a new project
             $project = new Project;
@@ -190,7 +205,7 @@ class WorkerController extends Controller
 
             //Saves file
             $file = $request->file('image')->storeAs(
-                'public/stored_projects', $fileid[0]->id. '.jpg'
+                'public/stored_projects', $fileid[0]->id . '.jpg'
             );
 
             //Sets correct filename when saving database
@@ -203,8 +218,163 @@ class WorkerController extends Controller
             Session::flash('message-project-added', "Projekts veiksmīgi pievienots!");
             return redirect()->back();
 
-        }else{
+        } else {
             redirect('/');
         }
+    }
+
+    public function getEditProjectPage($id)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+            //Gets the project data
+            $project = DB::table('projects')->where('id', '=', $id)->first();
+
+            //Returns view with data
+            return view('worker.projects.edit')->with('project', $project);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function editProject($id, Request $request)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+
+            //Input
+            $data = Input::except(array('_token'));
+
+            //Validation rules
+            $rule = array(
+                'name' => 'required',
+                'desc' => 'required',
+                'price' => 'required|numeric|min:0',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            );
+
+            //Validation messages
+            $messages = array(
+                'required' => 'Netika aizpildīti visi lauki!',
+            );
+
+            //Validates
+            $validator = Validator::make($data, $rule, $messages);
+
+            //Updates data
+            DB::table('projects')
+                ->where('id', $id)
+                ->update([
+                    'name' => $data['name'],
+                    'desc' => $data['desc'],
+                    'price' => $data['price'],
+                ]);
+
+            //File managment
+            if ($request->hasFile('image')) {
+
+                //Removes old file
+                Storage::delete('public/stored_projects/' . $id . '.jpg');
+
+                //Adds new file
+                $file = $request->file('image')->storeAs(
+                    'public/stored_projects', $id . '.jpg'
+                );
+            }
+
+
+            //Paziņojums par veikto darbību
+            Session::flash('message-project-edited', "Projekts veiksmīgi rediģēts!");
+            return redirect('/worker');
+
+        } else {
+            redirect('/');
+        }
+    }
+    
+    public function disableProject($id){
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+            //Updates the record in DB
+            DB::table('projects')
+                ->where('id', '=', $id)
+                ->update([
+                    'status' => 3
+                ]);
+
+            //Goes back
+            Session::flash('message-project-disabled', "Projekts veiksmīgi atslēgts!");
+
+        }
+
+        return redirect('/worker');
+    }
+    
+    public function enableProject($id){
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+            //Updates the record in DB
+            DB::table('projects')
+                ->where('id', '=', $id)
+                ->update([
+                    'status' => 1
+                ]);
+
+            //Goes back
+            Session::flash('message-project-enabled', "Projekts veiksmīgi ieslēgts!");
+
+        }
+
+        return redirect('/worker');
+    }
+
+    public function removeProject($id)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+            //Deletes DB records
+            DB::table('projects')->where('id', '=', $id)->delete();
+            DB::table('orders')->where('projectid', '=', $id)->delete();
+
+            //Removes saved file
+            Storage::delete('public/stored_projects/' . $id . '.jpg');
+
+            //Goes back
+            Session::flash('message-project-deleted', "Projekts veiksmīgi dzēsts!");
+
+        }
+
+        return redirect('/worker');
+    }
+
+    public function acceptOrder($id)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+            //Updates the record in DB
+            DB::table('orders')
+                ->where('id', '=', $id)
+                ->update([
+                    'status' => 1
+                ]);
+
+            //Goes back
+            Session::flash('message-order-accepted', "Pasūtījums veiksmīgi pieņemts!");
+
+        }
+
+        return redirect('/worker');
+    }
+
+    public function denyOrder($id)
+    {
+        if (Auth::user()->status == 2 || Auth::user()->status == 3) {
+            //Updates the record in DB
+            DB::table('orders')
+                ->where('id', '=', $id)
+                ->update([
+                    'status' => 2
+                ]);
+
+            //Goes back
+            Session::flash('message-order-denied', "Pasūtījums veiksmīgi noliegts!");
+
+        }
+
+        return redirect('/worker');
     }
 }

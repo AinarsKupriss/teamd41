@@ -34,6 +34,9 @@ Route::post('/addcustomproject', 'UserController@addCustomProject');
 
 Route::get('/allprojects', 'UserController@getProjectPage');
 Route::post('/addprojecttoorder/{projectID}', 'UserController@addProjectToOrder');
+Route::get('/addprojecttoorder/{projectID}', 'UserController@addProjectToOrder');
+
+Route::get('/orders', 'UserController@getOrderPage');
 
 
 
@@ -50,6 +53,20 @@ Route::prefix('worker')->group(function () {
     Route::post('/edit/{id}', 'WorkerController@editWorker');
 
     Route::post('/addProject', 'WorkerController@addProject');
+
+    Route::get('/edit-project/{id}', 'WorkerController@getEditProjectPage');
+
+    Route::post('/edit-project/{id}', 'WorkerController@editProject');
+
+    Route::get('/delete-project/{id}', 'WorkerController@removeProject');
+
+    Route::get('/accept-order/{id}', 'WorkerController@acceptOrder');
+
+    Route::get('/deny-order/{id}', 'WorkerController@denyOrder');
+
+    Route::get('/enable-project/{id}', 'WorkerController@enableProject');
+
+    Route::get('/disable-project/{id}', 'WorkerController@disableProject');
 });
 
 
