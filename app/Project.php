@@ -18,4 +18,9 @@ class Project extends Model
     protected $fillable = [
         'name', 'desc', 'image', 'status', 'price',
     ];
+
+    public function getUsers(){
+        return $this->belongsToMany('App\User', 'orders', 'projectid', 'userid')
+            ->withPivot('status');
+    }
 }

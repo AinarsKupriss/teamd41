@@ -18,8 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //Dashboard
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//User
+Route::get('/profile', 'UserController@getUserHome');
+
+Route::get('/editprofile', 'UserController@getEditPage');
+Route::put('/editprofile', 'UserController@editUser');
+
+Route::get('/newcustomproject', 'UserController@getCustomProjectPage');
+Route::post('/addcustomproject', 'UserController@addCustomProject');
+
+Route::get('/allprojects', 'UserController@getProjectPage');
+Route::post('/addprojecttoorder/{projectID}', 'UserController@addProjectToOrder');
+
 
 //Worker page
 Route::prefix('worker')->group(function () {
@@ -36,6 +51,7 @@ Route::prefix('worker')->group(function () {
     Route::post('/addProject', 'WorkerController@addProject');
 });
 
+
 //Admin page
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@getAdminHome');
@@ -43,3 +59,4 @@ Route::prefix('admin')->group(function () {
     Route::put('/update/{id}', 'AdminController@updateUser');
 
 });
+
