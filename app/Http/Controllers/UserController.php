@@ -173,6 +173,7 @@ class UserController extends Controller
 
             $user_order->save();
 
+            Session::flash('message-project-added', "Projekts veiksmīgi pievienots!");
             return redirect()->back();
         }
     }

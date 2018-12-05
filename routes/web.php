@@ -39,7 +39,7 @@ Route::get('/allprojects', 'UserController@getProjectPage');
 Route::post('/addprojecttoorder/{projectID}', 'UserController@addProjectToOrder');
 Route::get('/addprojecttoorder/{projectID}', 'UserController@addProjectToOrder');
 
-Route::get('/orders', 'UserController@getOrderPage');
+Route::get('/orders', 'UserController@getProjectPage');
 
 
 

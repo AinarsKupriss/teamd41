@@ -31,7 +31,7 @@
                                 <p class="alert alert-info">{{ Session::get('message-custom-project-added') }}</p>
                             @endif
 
-                            @if(Session::has('message-custom-project-added'))
+                            @if(Session::has('message-custom-project-edit'))
                                 <p class="alert alert-info">{{ Session::get('message-custom-project-edit') }}</p>
                             @endif
                             @foreach($projects as $project)
