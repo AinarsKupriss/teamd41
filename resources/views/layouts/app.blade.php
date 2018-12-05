@@ -12,6 +12,47 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+    <!-- Aināra inline scripts -->
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <script>
+        //File managment
+        $(document).ready(function () {
+
+            //Show functionality
+            $('[data-show]').each(function (e) {
+                var $thisElement = $(this);
+                var $relatedElement = $('[data-showable="' + $thisElement.data('show') + '"]');
+                
+                //On trigger click
+                $thisElement.find('[data-show-trigger]').each(function () {
+                    $(this).click(function () {
+                        //Show the showable field
+                        $relatedElement.slideDown();
+                        
+                        //Add required to the showable field
+                        $relatedElement.find('[data-add-required]').each(function () {
+                            $(this).prop('required',true);
+                        });
+
+                        //Hide "show" field
+                        $thisElement.hide();
+                    });
+                });
+            });
+
+            //Hides "showbale" fields
+            $('[data-showable]').each(function (e) {
+                $(this).hide();
+            });
+        });
+    </script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -58,7 +99,10 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                @if(Auth::user()->status == 2)
+                                @if(Auth::check())
+                                    <a class="dropdown-item" href="/profile">Mans profils</a>
+                                @endif
+                                @if(Auth::user()->status == 2 || Auth::user()->status == 3)
                                     <a class="dropdown-item" href="/worker">Darbinieks</a>
                                 @endif
                                 @if(Auth::user()->status == 3)
