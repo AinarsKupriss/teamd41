@@ -36,6 +36,7 @@ Route::get('/allprojects', 'UserController@getProjectPage');
 Route::post('/addprojecttoorder/{projectID}', 'UserController@addProjectToOrder');
 
 
+
 //Worker page
 Route::prefix('worker')->group(function () {
     Route::get('/', 'WorkerController@getWorkerHome');

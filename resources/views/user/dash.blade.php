@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+    {{-- T0D0: jasataisa, ka rada konkreta klienta pasutijumus--}}
     <div class="container">
         {{--{{$user}}--}}
         {{--{{$user}}--}}
@@ -42,3 +44,4 @@
     </div>
 
 @endsection
+

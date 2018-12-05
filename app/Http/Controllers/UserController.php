@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function getProjectPage(){
         if(Auth::user()->status == 1 ){
-            $projects = Project::all();
+            $projects = Project::where('status', '1')->get();
             return view('user.projects')->with('projects', $projects);
         }else{
             redirect('/');
@@ -93,3 +93,4 @@ class UserController extends Controller
         return redirect()->back();
     }
 }
+
