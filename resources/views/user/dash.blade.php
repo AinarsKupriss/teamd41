@@ -77,7 +77,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-12 col-md-8">
-                                                    <img src="storage/{{ $project->image}}" alt="img" height="100%" width="100%">
+                                                    <img class="img-fluid d-block mx-auto" src="storage/{{ $project->image}}" height="300" width="300">
                                                 </div>
                                             </div>
                                         </div>

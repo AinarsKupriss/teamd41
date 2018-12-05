@@ -116,8 +116,8 @@
                                             {{$worker->firstname}} {{$worker->lastname}} {{$worker->email}}
                                         </div>
                                         <div class="col-6">
-                                            <a href="/worker/delete/{{$worker->id}}" class="btn btn-primary">Delete</a>
-                                            <a href="/worker/edit/{{$worker->id}}" class="btn btn-primary">Edit</a>
+                                            <a href="/worker/delete/{{$worker->id}}" class="btn btn-primary">Dzēst</a>
+                                            <a href="/worker/edit/{{$worker->id}}" class="btn btn-primary">Labot</a>
                                         </div>
                                     </div>
                                     <br>
@@ -164,20 +164,20 @@
                                                         <div><b>Darbibas</b></div>
                                                         <div>
                                                             <a href="/worker/edit-project/{{$project->id}}"
-                                                               class="btn btn-primary">Edit</a>
+                                                               class="btn btn-primary">Labot</a>
                                                             <a href="/worker/delete-project/{{$project->id}}"
-                                                               class="btn btn-primary">Delete</a>
+                                                               class="btn btn-primary">Dzēst</a>
                                                             @if($project->status == 3)
                                                                 Projekts ir atslēgts
 
                                                                 <a href="/worker/enable-project/{{$project->id}}"
-                                                                   class="btn btn-primary">Enable</a>
+                                                                   class="btn btn-primary">Ieslēgt</a>
                                                             @endif
                                                             @if($project->status == 1)
                                                                 Projekts ir ieslēgts
 
                                                                 <a href="/worker/disable-project/{{$project->id}}"
-                                                                   class="btn btn-primary">Disable</a>
+                                                                   class="btn btn-primary">Atslēgt</a>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -292,8 +292,8 @@
                                             </ul>
                                         </div>
                                         <div class="col-12">
-                                            <a class="btn btn-success" href="/worker/accept-order/{{$order->id}}">Accept</a>
-                                            <a class="btn btn-danger" href="/worker/deny-order/{{$order->id}}">Deny</a>
+                                            <a class="btn btn-success" href="/worker/accept-order/{{$order->id}}">Pieņemt</a>
+                                            <a class="btn btn-danger" href="/worker/deny-order/{{$order->id}}">Noraidīt</a>
                                         </div>
                                     </div>
                                     <br>

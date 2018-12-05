@@ -24,7 +24,7 @@
                                         <li>{{$project->name}}</li>
                                         <li>{{$project->desc}}</li>
                                         <li>{{$project->price}}</li>
-                                        <li><img src="/storage/{{$project->image}}" alt="img"></li>
+                                        <li><img class="img-fluid d-block mx-auto" src="storage/{{ $project->image}}" height="300" width="300"></li>
                                         <li><a href="/addprojecttoorder/{{$project->id}}" class="btn btn-primary">Pasūtīt</a></li>
                                     </ul>
                                     <br>

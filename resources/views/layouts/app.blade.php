@@ -95,6 +95,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @if(Auth::check())
                                     <a class="dropdown-item" href="/profile">Mans profils</a>
+                                    <a class="dropdown-item" href="/orders">Projekti</a>
                                 @endif
                                 @if(Auth::user()->status == 2 || Auth::user()->status == 3)
                                     <a class="dropdown-item" href="/worker">Darbinieks</a>
