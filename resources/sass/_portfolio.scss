@@ -53,14 +53,23 @@
       p {
         font-size: 16px;
         font-style: italic;
+        word-break: break-all;
+        max-height: 100px;
+        overflow: -webkit-paged-y;
         margin: 0;
         @include serif-font;
       }
+
     }
   }
   * {
     z-index: 2;
   }
+}
+.imgtype1{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 @media(min-width:767px) {
   #portfolio {

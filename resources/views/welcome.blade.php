@@ -8,7 +8,7 @@
                     <div class="container">
                         <div class="intro-text">
                             <div class="intro-lead-in">Tavs uzticamākais partneris</div>
-                            <div class="intro-heading text-uppercase">SIA BŪVNESIS</div>
+                            <div class="intro-heading text-uppercase">SIA BŪVGALDNIEKS</div>
                             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Uzzināt vairāk</a>
                         </div>
                     </div>
@@ -58,94 +58,27 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <h2 class="section-heading text-uppercase">Mūsu projekti</h2>
-                                <h3 class="section-subheading text-muted">Strādājam jau vairāk kā 10 gadus.</h3>
+                                <h3 class="section-subheading text-muted">Šeit varat redzēt pēdējos, mūsu veidotos projektus.</h3>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-sm-6 portfolio-item">
-                                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <i class="fas fa-plus fa-3x"></i>
+                            @foreach($projects as $project)
+                                <div class="col-md-4 col-sm-6 portfolio-item">
+                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{ $project->id }}">
+                                        <div class="portfolio-hover">
+                                            <div class="portfolio-hover-content">
+                                                <i class="fas fa-plus fa-3x"></i>
+                                            </div>
                                         </div>
+                                        <img width="400" height="300" class="img-fluid imgtype1" src="storage/{{ $project->image}}" alt="">
+                                    </a>
+                                    <div class="portfolio-caption">
+                                        <h4>{{$project->name}}</h4>
+                                        <p class="text-muted">{{$project->desc}}</p>
                                     </div>
-                                    <img width="400" height="300" class="img-fluid" src="/images/portfolio/01-thumbnail.jpg" alt="">
-                                </a>
-                                <div class="portfolio-caption">
-                                    <h4>Biroju ēka</h4>
-                                    <p class="text-muted">Dārzciema biroju centrs</p>
                                 </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 portfolio-item">
-                                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <i class="fas fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <img width="400" height="300" class="img-fluid" src="/images/portfolio/02-thumbnail.jpg" alt="">
-                                </a>
-                                <div class="portfolio-caption">
-                                    <h4>Bibliotēka</h4>
-                                    <p class="text-muted">Vidzemes bibliotēka</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 portfolio-item">
-                                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <i class="fas fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <img width="400" height="300" class="img-fluid" src="/images/portfolio/03-thumbnail.jpg" alt="">
-                                </a>
-                                <div class="portfolio-caption">
-                                    <h4>Uzņēmuma galvenā mītne</h4>
-                                    <p class="text-muted">Rīga, Krišjāņa Valdemāra iela 1c</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 portfolio-item">
-                                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <i class="fas fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <img width="400" height="300" class="img-fluid" src="/images/portfolio/04-thumbnail.jpg" alt="">
-                                </a>
-                                <div class="portfolio-caption">
-                                    <h4>Guļbaļķu māja</h4>
-                                    <p class="text-muted">Pirts un māja zem viena jumta</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 portfolio-item">
-                                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <i class="fas fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <img width="400" height="300" class="img-fluid" src="/images/portfolio/05-thumbnail.jpg" alt="">
-                                </a>
-                                <div class="portfolio-caption">
-                                    <h4>Dzīvokļu ēka</h4>
-                                    <p class="text-muted">Valmiera, Skolas iela 2</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 portfolio-item">
-                                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <i class="fas fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <img width="400" height="300" class="img-fluid" src="/images/portfolio/06-thumbnail.jpg" alt="">
-                                </a>
-                                <div class="portfolio-caption">
-                                    <h4>Privātmāja</h4>
-                                    <p class="text-muted">Ģimenes māja</p>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </section>
@@ -159,74 +92,22 @@
                                 <h3 class="section-subheading text-muted">Mūsu stāsts.</h3>
                             </div>
                         </div>
+                        <div class="row d-flex justify-content-center">
+                            <img src="/img/logo.jpeg" alt="" class="img-fluid" style="width: 15%; height: 15%; padding-bottom: 50px">
+                            <p style="text-align: justify">Uzņēmums "Būvgaldnieks" ir dibināts samērā nesen, 2005. gada janvārī , taču uzņēmumā strādājošo meistaru darba pieredze un rūdījums šajā nozarē ir mērojams 10 gadu garumā. Visi darbinieki profesionāli pārzina savus veicamos darbus. Pie mums arī strādā meistari, kuriem ir Latvija Amatniecības Kameras meistaru diplomi. Tāpat ir nodrošināts maksimāls tehniskais aprīkojums, kurš nodrošina ātrāku un kvalitatīvāku darbu izpildi. Ir nodibināta ilggadēja sadarbība ar kokapstrādes uzņēmumiem, kuri piegādā mums nepieciešamās sagataves un detaļas, tādējādi ir iespējams nodrošināt samērīgas kokmateriālu cenas, augstāku kvalitāti un garantijas.</p>
+
+
+                        </div>
                         <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="timeline">
-                                    <li>
-                                        <div class="timeline-image">
-                                            <img width="200" height="200" class="rounded-circle img-fluid" src="/images/about/1.jpg" alt="">
-                                        </div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4>2009</h4>
-                                                <h4 class="subheading">Sertifikātu iegūšana</h4>
-                                            </div>
-                                            <div class="timeline-body">
-                                                <p class="text-muted">Uzņēmums tika izveidots 2008.gadā un jau 2009.gadā mēs ieguvām visus sertifikātus un atļaujas, lai varētu strādāt ar projektiem!</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="timeline-inverted">
-                                        <div class="timeline-image">
-                                            <img width="200" height="200" class="rounded-circle img-fluid" src="/images/about/2.jpg" alt="">
-                                        </div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4>2012</h4>
-                                                <h4 class="subheading">Pirmais lielais projekts</h4>
-                                            </div>
-                                            <div class="timeline-body">
-                                                <p class="text-muted">Mūsu pirmais lielais projekts - mūsu galvenā mītne!</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-image">
-                                            <img class="rounded-circle img-fluid" src="/images/about/3.jpg" alt="">
-                                        </div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4>2015</h4>
-                                                <h4 class="subheading">Komandas un pakalpojumu paplašināšana</h4>
-                                            </div>
-                                            <div class="timeline-body">
-                                                <p class="text-muted">Darbinieku skaits tika palielināts līdz 250, sākām piedāvāt remonta un drošības sistēmu pakalpojumus.</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="timeline-inverted">
-                                        <div class="timeline-image">
-                                            <img class="rounded-circle img-fluid" src="/images/about/4.jpg" alt="">
-                                        </div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4>2018</h4>
-                                                <h4 class="subheading">Filiāles ārzemēs</h4>
-                                            </div>
-                                            <div class="timeline-body">
-                                                <p class="text-muted">Atvērām filiāles Francijā, Anglijā, Vācijā un Amerikā!</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="timeline-inverted">
-                                        <div class="timeline-image">
-                                            <h4>Esi
-                                                <br>daļa no
-                                                <br>mums!</h4>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <p>"Būvgaldnieks" piedāvā:</p>
+                            <ul style="list-style-type:circle">
+                                <li>Konsultāciju, uzmērīšanu un veicamo darbu tāmēšanu.</li>
+                                <li>Pirts telpu, priekštelpu un atpūtas telpu izplānošanu.</li>
+                                <li>Materiālu sagāde.</li>
+                                <li>Piemērotas pirts krāsns piegāde un uzstādīšana.</li>
+                                <li>Kvalitatīvu darbu izpildi ievērojot būvniecības normatīvus un pasūtītāju vēlmes.</li>
+                                <li> Nodrošinām garantijas un pēc garantijas servisu.</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
@@ -370,201 +251,205 @@
                 <!-- Portfolio Modals -->
 
                 <!-- Modal 1 -->
-                <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl"></div>
+
+
+
+
+                @foreach($projects as $project)
+                    <div class="portfolio-modal modal fade" id="portfolioModal{{ $project->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="close-modal" data-dismiss="modal">
+                                    <div class="lr">
+                                        <div class="rl"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 mx-auto">
-                                        <div class="modal-body">
-                                            <h2 class="text-uppercase">Biroju ēka</h2>
-                                            <p class="item-intro text-muted">Dārzciema biroju centrs.</p>
-                                            <img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/01-thumbnail.jpg" alt="">
-                                            <p>Šī ir Dārzciema biroju centra ēka, kurā atrodas 5 biroji. Visi biroji ir aprīkoti ar mūsdienīgām tehnoloģijām. Tās platība ir 4200cm3.</p>
-                                            <ul class="list-inline">
-                                                <li>Datums: Janvāris 2014</li>
-                                                <li>Pasūtītājs: SIA Dārzciema Biroji</li>
-                                                <li>Kategorija: Celtniecība</li>
-                                            </ul>
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                                <i class="fas fa-times"></i>
-                                                Aizvērt</button>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-8 mx-auto">
+                                            <div class="modal-body">
+                                                <h2 class="text-uppercase">{{$project->name}}</h2>
+                                                <p class="item-intro text-muted">Dārzciema biroju centrs.</p>
+                                                <img width="400" height="300" class="img-fluid d-block mx-auto" src="storage/{{ $project->image}}" alt="img">
+                                                <p>{{$project->desc}}</p>
+                                                <ul class="list-inline">
+                                                    <li>Cena: {{$project->price}}</li>
+                                                </ul>
+                                                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                                    <i class="fas fa-times"></i>
+                                                    Aizvērt</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
                 <!-- Modal 2 -->
-                <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl"></div>
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 mx-auto">
-                                        <div class="modal-body">
-                                            <h2 class="text-uppercase">Bibliotēka</h2>
-                                            <p class="item-intro text-muted">Vidzemes bibliotēka.</p>
-                                            <img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/02-thumbnail.jpg" alt="">
-                                            <p>Šī ir Vidzemes lielākā bibliotēka. Tās platība ir 5500cm3.</p>
-                                            <ul class="list-inline">
-                                                <li>Datums: Marts 2015</li>
-                                                <li>Pasūtītājs: Valmieras pašvaldība</li>
-                                                <li>Kategorija: Celtniecība</li>
-                                            </ul>
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                                <i class="fas fa-times"></i>
-                                                Aizvērt</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
+                            {{--<div class="close-modal" data-dismiss="modal">--}}
+                                {{--<div class="lr">--}}
+                                    {{--<div class="rl"></div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="container">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-lg-8 mx-auto">--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--<h2 class="text-uppercase">Bibliotēka</h2>--}}
+                                            {{--<p class="item-intro text-muted">Vidzemes bibliotēka.</p>--}}
+                                            {{--<img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/02-thumbnail.jpg" alt="">--}}
+                                            {{--<p>Šī ir Vidzemes lielākā bibliotēka. Tās platība ir 5500cm3.</p>--}}
+                                            {{--<ul class="list-inline">--}}
+                                                {{--<li>Datums: Marts 2015</li>--}}
+                                                {{--<li>Pasūtītājs: Valmieras pašvaldība</li>--}}
+                                                {{--<li>Kategorija: Celtniecība</li>--}}
+                                            {{--</ul>--}}
+                                            {{--<button class="btn btn-primary" data-dismiss="modal" type="button">--}}
+                                                {{--<i class="fas fa-times"></i>--}}
+                                                {{--Aizvērt</button>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <!-- Modal 3 -->
-                <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl"></div>
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 mx-auto">
-                                        <div class="modal-body">
-                                            <h2 class="text-uppercase">Uzņēmuma galvenā mītne</h2>
-                                            <p class="item-intro text-muted">Rīga, Krišjāņa Valdemāra iela 1c.</p>
-                                            <img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/03-thumbnail.jpg" alt="">
-                                            <p>Šī ir mūsu galvenā mītne(HQ). Tā sastāv no 5 stāviem un tās kopējā platība ir 3500cm3.</p>
-                                            <ul class="list-inline">
-                                                <li>Datums: Jūnijs 2012</li>
-                                                <li>Kategorija: Celtniecība</li>
-                                            </ul>
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                                <i class="fas fa-times"></i>
-                                                Aizvērt</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{--<!-- Modal 3 -->--}}
+                {{--<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
+                            {{--<div class="close-modal" data-dismiss="modal">--}}
+                                {{--<div class="lr">--}}
+                                    {{--<div class="rl"></div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="container">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-lg-8 mx-auto">--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--<h2 class="text-uppercase">Uzņēmuma galvenā mītne</h2>--}}
+                                            {{--<p class="item-intro text-muted">Rīga, Krišjāņa Valdemāra iela 1c.</p>--}}
+                                            {{--<img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/03-thumbnail.jpg" alt="">--}}
+                                            {{--<p>Šī ir mūsu galvenā mītne(HQ). Tā sastāv no 5 stāviem un tās kopējā platība ir 3500cm3.</p>--}}
+                                            {{--<ul class="list-inline">--}}
+                                                {{--<li>Datums: Jūnijs 2012</li>--}}
+                                                {{--<li>Kategorija: Celtniecība</li>--}}
+                                            {{--</ul>--}}
+                                            {{--<button class="btn btn-primary" data-dismiss="modal" type="button">--}}
+                                                {{--<i class="fas fa-times"></i>--}}
+                                                {{--Aizvērt</button>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <!-- Modal 4 -->
-                <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl"></div>
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 mx-auto">
-                                        <div class="modal-body">
-                                            <h2 class="text-uppercase">Guļbaļķu māja</h2>
-                                            <p class="item-intro text-muted">Pirts un māja zem viena jumta.</p>
-                                            <img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/04-thumbnail.jpg" alt="">
-                                            <p>Šī ir ģimenes māja. Tā sastāv no pirts un dzīvojamajām telpām. Tās platība ir 1700cm3.</p>
-                                            <ul class="list-inline">
-                                                <li>Datums: Augusts 2010</li>
-                                                <li>Pasūtītājs: Privātpersona</li>
-                                                <li>Kategorija: Celtniecība</li>
-                                            </ul>
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                                <i class="fas fa-times"></i>
-                                                Aizvērt</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{--<!-- Modal 4 -->--}}
+                {{--<div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
+                            {{--<div class="close-modal" data-dismiss="modal">--}}
+                                {{--<div class="lr">--}}
+                                    {{--<div class="rl"></div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="container">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-lg-8 mx-auto">--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--<h2 class="text-uppercase">Guļbaļķu māja</h2>--}}
+                                            {{--<p class="item-intro text-muted">Pirts un māja zem viena jumta.</p>--}}
+                                            {{--<img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/04-thumbnail.jpg" alt="">--}}
+                                            {{--<p>Šī ir ģimenes māja. Tā sastāv no pirts un dzīvojamajām telpām. Tās platība ir 1700cm3.</p>--}}
+                                            {{--<ul class="list-inline">--}}
+                                                {{--<li>Datums: Augusts 2010</li>--}}
+                                                {{--<li>Pasūtītājs: Privātpersona</li>--}}
+                                                {{--<li>Kategorija: Celtniecība</li>--}}
+                                            {{--</ul>--}}
+                                            {{--<button class="btn btn-primary" data-dismiss="modal" type="button">--}}
+                                                {{--<i class="fas fa-times"></i>--}}
+                                                {{--Aizvērt</button>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <!-- Modal 5 -->
-                <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl"></div>
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 mx-auto">
-                                        <div class="modal-body">
-                                            <h2 class="text-uppercase">Dzīvokļu ēka</h2>
-                                            <p class="item-intro text-muted">Valmiera, Skolas iela 2.</p>
-                                            <img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/05-thumbnail.jpg" alt="">
-                                            <p>Šī ir moderna dzīvokļu ēka Valmierā. Tās platība ir 5700cm3.</p>
-                                            <ul class="list-inline">
-                                                <li>Datums: Septembris 2018</li>
-                                                <li>Pasūtītājs: Valmieras pašvaldība</li>
-                                                <li>Kategorija: Celtniecība</li>
-                                            </ul>
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                                <i class="fas fa-times"></i>
-                                                Aizvērt</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{--<!-- Modal 5 -->--}}
+                {{--<div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
+                            {{--<div class="close-modal" data-dismiss="modal">--}}
+                                {{--<div class="lr">--}}
+                                    {{--<div class="rl"></div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="container">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-lg-8 mx-auto">--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--<h2 class="text-uppercase">Dzīvokļu ēka</h2>--}}
+                                            {{--<p class="item-intro text-muted">Valmiera, Skolas iela 2.</p>--}}
+                                            {{--<img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/05-thumbnail.jpg" alt="">--}}
+                                            {{--<p>Šī ir moderna dzīvokļu ēka Valmierā. Tās platība ir 5700cm3.</p>--}}
+                                            {{--<ul class="list-inline">--}}
+                                                {{--<li>Datums: Septembris 2018</li>--}}
+                                                {{--<li>Pasūtītājs: Valmieras pašvaldība</li>--}}
+                                                {{--<li>Kategorija: Celtniecība</li>--}}
+                                            {{--</ul>--}}
+                                            {{--<button class="btn btn-primary" data-dismiss="modal" type="button">--}}
+                                                {{--<i class="fas fa-times"></i>--}}
+                                                {{--Aizvērt</button>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <!-- Modal 6 -->
-                <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl"></div>
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 mx-auto">
-                                        <div class="modal-body">
-                                            <h2 class="text-uppercase">Privātmāja</h2>
-                                            <p class="item-intro text-muted">Ģimenes māja.</p>
-                                            <img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/06-thumbnail.jpg" alt="">
-                                            <p>Šī ir pavisam vienkārša privātmāja. Tās platība ir 600cm3.</p>
-                                            <ul class="list-inline">
-                                                <li>Datums: Septembris 2009</li>
-                                                <li>Pasūtītājs: Privātpersona</li>
-                                                <li>Kategorija: Celtniecība</li>
-                                            </ul>
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                                <i class="fas fa-times"></i>
-                                                Aizvērt</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                {{--<!-- Modal 6 -->--}}
+                {{--<div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
+                            {{--<div class="close-modal" data-dismiss="modal">--}}
+                                {{--<div class="lr">--}}
+                                    {{--<div class="rl"></div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="container">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-lg-8 mx-auto">--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--<h2 class="text-uppercase">Privātmāja</h2>--}}
+                                            {{--<p class="item-intro text-muted">Ģimenes māja.</p>--}}
+                                            {{--<img width="400" height="300" class="img-fluid d-block mx-auto" src="/images/portfolio/06-thumbnail.jpg" alt="">--}}
+                                            {{--<p>Šī ir pavisam vienkārša privātmāja. Tās platība ir 600cm3.</p>--}}
+                                            {{--<ul class="list-inline">--}}
+                                                {{--<li>Datums: Septembris 2009</li>--}}
+                                                {{--<li>Pasūtītājs: Privātpersona</li>--}}
+                                                {{--<li>Kategorija: Celtniecība</li>--}}
+                                            {{--</ul>--}}
+                                            {{--<button class="btn btn-primary" data-dismiss="modal" type="button">--}}
+                                                {{--<i class="fas fa-times"></i>--}}
+                                                {{--Aizvērt</button>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
 @endsection

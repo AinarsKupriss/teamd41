@@ -14,9 +14,7 @@
 Auth::routes();
 
 //Home page
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UserController@getIndex');
 
 
 //Dashboard

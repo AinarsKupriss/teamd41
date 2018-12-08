@@ -100,7 +100,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container" id="app">
-            <a class="navbar-brand js-scroll-trigger" href="/">Būvnesis</a>
+            <a class="navbar-brand js-scroll-trigger" href="/">BŪVGALDNIEKS</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Izvēlne
                 <i class="fas fa-bars"></i>

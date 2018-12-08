@@ -10679,7 +10679,7 @@ ul {
 header.masthead {
   text-align: center;
   color: white;
-  background-image: url(/images/bg.jpeg?e5945b4caf1a0d6d0542205c5e1a7f9f);
+  background-image: url(/images/bg.jpeg?a4594c5d21769d0c4251372da89c1e04);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -10798,12 +10798,22 @@ header.masthead .intro-text .intro-heading {
 #portfolio .portfolio-item .portfolio-caption p {
   font-size: 16px;
   font-style: italic;
+  word-break: break-all;
+  max-height: 100px;
+  overflow: -webkit-paged-y;
   margin: 0;
   font-family: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 #portfolio * {
   z-index: 2;
+}
+
+.imgtype1 {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (min-width: 767px) {
