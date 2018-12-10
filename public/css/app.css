@@ -10578,6 +10578,10 @@ ul {
   list-style: none;
 }
 
+.about {
+  background-color: gainsboro;
+}
+
 .parsley-errors-list {
   list-style: none;
   padding: 0;
@@ -10616,7 +10620,7 @@ ul {
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
-  font-size: 90%;
+  font-size: 100%;
   font-weight: 400;
   padding: 0.75em 0;
   letter-spacing: 1px;
@@ -10770,7 +10774,6 @@ header.masthead .intro-text .intro-heading {
   height: 20px;
   margin-top: -12px;
   text-align: center;
-  color: white;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
@@ -10787,7 +10790,6 @@ header.masthead .intro-text .intro-heading {
   margin: 0 auto;
   padding: 25px;
   text-align: center;
-  background-color: #fff;
 }
 
 #portfolio .portfolio-item .portfolio-caption h4 {
@@ -10842,6 +10844,7 @@ header.masthead .intro-text .intro-heading {
 }
 
 .portfolio-modal .modal-content p {
+  word-break: break-all;
   margin-bottom: 30px;
 }
 

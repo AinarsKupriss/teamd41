@@ -107,6 +107,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#services">Pakalpojumi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#about">Par mums</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#portfolio">Projekti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#contact">Kontakti</a>
+                    </li>
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Pierakstīties</a>
@@ -158,7 +170,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Visas tiesības paturam &copy; Būvnesis 2018</span>
+                    <span class="copyright">Visas tiesības paturam &copy; BUVGALDNIEKS</span>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
