@@ -72,12 +72,14 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-12 col-md-8">
-                                                    @if($project->status == 1)
-                                                        <img src="/storage/{{ $project->image}}/" alt="" style="width: 100%;object-fit: cover;">
-                                                    @else
-                                                        <img src="/storage/stored_projects/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">
-                                                        <img src="storage/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">
-                                                    @endif
+                                                    {{--@if($project->status == 1)--}}
+                                                        {{--<img src="/storage/{{ $project->image}}/" alt="" style="width: 100%;object-fit: cover;">--}}
+                                                    {{--@else--}}
+                                                        {{--<img src="/storage/stored_projects/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">--}}
+                                                        {{--<img src="storage/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">--}}
+                                                    {{--@endif--}}
+                                                    <img src="/storage/stored_projects/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">
+                                                    <img src="storage/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">
                                                 </div>
                                             </div>
                                         </div>
