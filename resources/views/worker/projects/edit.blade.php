@@ -12,14 +12,14 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-12 text-center">
+                    <div class="col-lg-12 card text-center">
                         <div class="card-header">Rediģēt projektu</div>
                         <div class="card-body">
                             <form method="POST" action="/worker/edit-project/{{$project->id}}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">Nosaukums</label>
+                                    <label for="name" class="col-md-3 col-form-label text-md-right">Nosaukums</label>
 
                                     <div class="col-md-6">
                                         <input id="name" type="text"
@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="desc" class="col-md-4 col-form-label text-md-right">Apraksts</label>
+                                    <label for="desc" class="col-md-3 col-form-label text-md-right">Apraksts</label>
 
                                     <div class="col-md-6">
                                     <textarea id="desc" type="text"
@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="price" class="col-md-4 col-form-label text-md-right">Cena</label>
+                                    <label for="price" class="col-md-3 col-form-label text-md-right">Cena</label>
 
                                     <div class="col-md-6">
                                         <input id="price" type="text"
@@ -70,15 +70,19 @@
                                 {{--Image div (image-visible)--}}
                                 <div data-show="1">
                                     <div class="form-group row">
-                                        <div for="image" class="col-md-4 col-form-label text-md-right">Bilde</div>
+                                        <div for="image" class="col-md-3 col-form-label text-md-right">Bilde</div>
+                                        <div class="col-md-8 ">
+                                            <img style="height: 100%;width: 100%;object-fit: cover;" src="/storage/{{$project->image}}" alt="img">
+                                        </div>
+
                                     </div>
-                                    <img style="height: 250px;width: 200px;object-fit: cover;" src="/storage/{{$project->image}}" alt="img">
+
 
                                     <button type="button" class="btn btn-primary" data-show-trigger>Mainīt bildi</button>
                                 </div>
 
                                 <div class="form-group row" data-showable="1">
-                                    <label for="image" class="col-md-4 col-form-label text-md-right">Bilde</label>
+                                    <label for="image" class="col-md-3 col-form-label text-md-right">Bilde</label>
 
                                     <div class="col-md-6">
                                         <input id="image" type="file"
@@ -92,9 +96,9 @@
                                         @endif
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="form-group row mb-0">
-                                    <div class="col-md-6 offset-md-4">
+                                    <div class="col-md-6 offset-md-3">
                                         <button type="submit" class="btn btn-primary">
                                             Saglabāt
                                         </button>

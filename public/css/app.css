@@ -10580,6 +10580,7 @@ ul {
 
 .about {
   background-color: gainsboro;
+  padding: 20px;
 }
 
 .parsley-errors-list {
@@ -10666,7 +10667,7 @@ ul {
 }
 
 .custom-section {
-  background-color: #212529;
+  background-color: #3a2508;
   min-height: 1000px;
   padding-top: 15%;
 }

@@ -12,7 +12,6 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <div class="card-header">Rediģēt projektu</div>
                         <div class="card-body">
                             @if(Session::has('message-worker-edited'))
                                 <p class="alert alert-info">{{ Session::get('message-worker-edited') }}</p>
@@ -65,6 +64,7 @@
                                         <hr>
                                     </div>
                                 </div>
+                                    <br>
                             @endforeach
                         </div>
                     </div>

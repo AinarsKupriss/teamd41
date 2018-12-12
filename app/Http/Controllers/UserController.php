@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function getEditPage(){
         $authID = Auth::id();
-        $user = User::find($authID)->first();
+        $user = User::find($authID);
         return view('user.editprofile')->with('user', $user);
     }
 
@@ -67,7 +67,7 @@ class UserController extends Controller
     }
 
     public function editUser(Request $request){
-        if(Auth::check()){
+        if(Auth::check($request)){
             $authID = Auth::id();
             $user = User::find($authID);
             $user->firstname = $request->input('firstname');

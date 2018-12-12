@@ -153,34 +153,32 @@
                                                 <div class="row">
                                                     <div class="col-12 col-md-4">
                                                         <div>
-                                                            <b>Projekta nosaukums:</b>
+                                                            <b>Projekta nosaukums: </b> {{ $project->name}}
                                                         </div>
-                                                        <div>{{ $project->name}}</div>
                                                         <div>
-                                                            <b>Apraksts:</b>
+                                                            <b>Apraksts: </b>{{ $project->desc}}
                                                         </div>
-                                                        <div>{{ $project->desc}}</div>
                                                         <div>
-                                                            <b>Cena:</b>
+                                                            <b>Cena: </b>{{ $project->price}} EUR
                                                         </div>
-                                                        <div>{{ $project->price}} EUR</div>
-                                                        <div><b>Darbibas</b></div>
+                                                        <div>
+                                                            @if($project->status == 3)
+                                                                <b>Projekts ir atslēgts</b>
+                                                            @endif
+                                                            @if($project->status == 1)
+                                                                <b>Projekts ir ieslēgts</b>
+                                                            @endif
+                                                        </div>
                                                         <div>
                                                             <a href="/worker/edit-project/{{$project->id}}"
                                                                class="btn btn-primary">Labot</a>
                                                             <a href="/worker/delete-project/{{$project->id}}"
                                                                class="btn btn-primary">Dzēst</a>
-                                                        </div>
-                                                        <div>
                                                             @if($project->status == 3)
-                                                                Projekts ir atslēgts
-                                                                <br>
                                                                 <a href="/worker/enable-project/{{$project->id}}"
                                                                    class="btn btn-primary">Ieslēgt</a>
                                                             @endif
                                                             @if($project->status == 1)
-                                                                Projekts ir ieslēgts
-                                                                <br>
                                                                 <a href="/worker/disable-project/{{$project->id}}"
                                                                    class="btn btn-primary">Atslēgt</a>
                                                             @endif
@@ -188,7 +186,7 @@
                                                     </div>
                                                     <div class="col-12 col-md-8">
                                                         <img src="storage/{{ $project->image}}" alt="img"
-                                                             style="height: 250px;width: 200px;object-fit: cover;">
+                                                             style="height: 100%;width: 100%;object-fit: cover;">
                                                     </div>
                                                 </div>
                                             </li>
@@ -210,8 +208,7 @@
                                 <form method="post" action="/worker/addProject" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">Projekta
-                                            nosaukums:</label>
+                                        <label for="name" class="col-md-4 col-form-label text-md-right">Projekta nosaukums:</label>
 
                                         <div class="col-md-6">
                                             <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -256,7 +253,7 @@
                                         <label for="image" class="col-md-4 col-form-label text-md-right">Projekta
                                             bilde:</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 text-md-left">
                                             <input class=" {{ $errors->has('image') ? ' is-invalid' : '' }}"
                                                    id="image" type="file" name="image" required>
                                         </div>
