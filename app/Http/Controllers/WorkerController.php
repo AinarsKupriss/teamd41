@@ -47,7 +47,8 @@ class WorkerController extends Controller
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'password' => 'required',
-                'email' => 'required'
+                'email' => 'required',
+                'phone_number' => 'required'
             );
 
             //Validation messages
@@ -69,6 +70,7 @@ class WorkerController extends Controller
             $worker->firstname = $data['firstname'];
             $worker->lastname = $data['lastname'];
             $worker->email = $data['email'];
+            $worker->phone_number = $data['phone_number'];
             $worker->status = 2;
             $worker->password = bcrypt($data['password']);
 
@@ -120,7 +122,8 @@ class WorkerController extends Controller
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'password' => 'required',
-                'email' => 'required'
+                'email' => 'required',
+                'phone_number' => 'required'
             );
 
             //Validation messages
@@ -145,7 +148,8 @@ class WorkerController extends Controller
                     'firstname' => $data["firstname"],
                     'lastname' => $data["lastname"],
                     'password' => bcrypt($data["firstname"]),
-                    'email' => $data["email"]
+                    'email' => $data["email"],
+                    'phone_number' => $data['phone_number']
                 ]);
 
             Session::flash('message-worker-edited', "Darbinieks veiksmīgi rediģēts!");

@@ -30,6 +30,7 @@
                 defaultMessage: "Šis ieraksts veikts nekorekti.",
                 type: {
                     email:        "Šeit jāieraksta derīgs e-pasts.",
+                    phone_number: "Šeit ir jaievada telefona nr.",
                     url:          "Šeit jāieraksta korekts url.",
                     number:       "Šeit jāieraksta derīgs skaitlis.",
                     integer:      "Šeit jāieraksta vesels skaitlis.",

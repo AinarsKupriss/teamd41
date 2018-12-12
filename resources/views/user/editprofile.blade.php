@@ -37,6 +37,12 @@
                                         {{Form::email('email', $user->email, ['class' => 'form-control'])}}
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    {{Form::label('phone_number', 'Telefona nr.', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                                    <div class="col-md-6">
+                                        {{Form::text('phone_number', $user->phone_number, ['class' => 'form-control'])}}
+                                    </div>
+                                </div>
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-3">

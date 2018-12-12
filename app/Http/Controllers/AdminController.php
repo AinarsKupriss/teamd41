@@ -27,6 +27,7 @@ class AdminController extends Controller
             $user->firstname = $request->input('firstname');
             $user->lastname = $request->input('lastname');
             $user->email = $request->input('email');
+            $user->phone_number = $request->input('phone_number');
             $user->status = $request->input('status');
             $user->save();
 

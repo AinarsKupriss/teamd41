@@ -73,6 +73,7 @@ class UserController extends Controller
             $user->firstname = $request->input('firstname');
             $user->lastname = $request->input('lastname');
             $user->email = $request->input('email');
+            $user->phone_number = $request->input('phone_number');
             $user->save();
 
             Session::flash('message-profile-edited', "Profils veiksmīgi rediģēts!");
@@ -154,13 +155,6 @@ class UserController extends Controller
         return redirect()->action('UserController@getUserHome');
     }
 
-//    public function deleteCustomProject($id){
-//        $project = Project::find($id);
-//
-//        Storage::delete('public/stored_projects/' . $project->image);
-//        $project->delete();
-//        return redirect()->action('UserController@getUserHome');
-//    }
 
     public function addProjectToOrder($projectID){
         if(Auth::check()) {

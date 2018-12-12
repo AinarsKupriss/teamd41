@@ -23,6 +23,7 @@
                                 @endif
                                 <h1><strong>{{$user->firstname}} {{$user->lastname}}</strong></h1>
                                 <p>{{$user->email}}</p>
+                                    <p>{{$user->phone_number}}</p>
                                 <a href="/editprofile" class="btn btn-primary">Rediģēt</a>
                             </div>
                         </div>
@@ -71,12 +72,11 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-12 col-md-8">
-                                                    @if($project->status == 3)
+                                                    @if($project->status == 1)
                                                         <img src="storage/{{ $project->image}}" alt="img" height="100%" width="100%">
                                                     @else
                                                         <img src="storage/stored_projects/{{ $project->image}}" alt="img" height="100%" width="100%">
                                                     @endif
-
                                                 </div>
                                             </div>
                                         </div>
