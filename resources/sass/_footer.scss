@@ -1,7 +1,9 @@
 // Styling for the footer
 footer {
-  padding: 25px 0;
-  text-align: center;
+    background: #212529;
+    padding: 25px 0;
+    text-align: center;
+    text-decoration-color: white;
   span.copyright {
     font-size: 90%;
     line-height: 40px;
@@ -16,7 +18,9 @@ footer {
     @include heading-font;
   }
 }
-
+.copyright{
+    color: white;
+}
 ul.social-buttons {
   margin-bottom: 0;
   li {

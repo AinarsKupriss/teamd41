@@ -123,7 +123,7 @@
                                             <a href="/worker/edit/{{$worker->id}}" class="btn btn-primary">Labot</a>
                                         </div>
                                     </div>
-                                    <br>
+                                    <hr>
                                 @endforeach
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                                                             <b>Projekta nosaukums: </b> {{ $project->name}}
                                                         </div>
                                                         <div>
-                                                            <b>Apraksts: </b>{{ $project->desc}}
+                                                            <b>Apraksts </b><p style="text-align: justify">{{ $project->desc}}</p>
                                                         </div>
                                                         <div>
                                                             <b>Cena: </b>{{ $project->price}} EUR
@@ -183,6 +183,7 @@
                                                                    class="btn btn-primary">Atslēgt</a>
                                                             @endif
                                                         </div>
+                                                        <br>
                                                     </div>
                                                     <div class="col-12 col-md-8">
                                                         <img src="storage/{{ $project->image}}" alt="img"
@@ -192,7 +193,9 @@
                                             </li>
                                         </ul>
                                     </div>
+                                        <hr>
                                 @endforeach
+
                             </div>
                         </div>
 
@@ -291,7 +294,7 @@
                                             <ul>
                                                 <li><b>Pasūtītājs:</b> {{$order->firstname}} {{$order->lastname}}</li>
                                                 <li><b>Projekts:</b> {{$order->name}}</li>
-                                                <li><b>Apraksts:</b> {{$order->desc}}</li>
+                                                <li><b>Apraksts:</b><p style="text-align: justify">{{$order->desc}}</p> </li>
                                                 <li><b>Bilde:</b> <a href="/storage/{{$order->image}}">Apskatīt</a></li>
                                                 <li><b>Cena:</b> {{$order->price}} EUR</li>
                                             </ul>

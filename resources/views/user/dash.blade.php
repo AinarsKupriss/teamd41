@@ -69,15 +69,14 @@
                                                     @if($project->status == 1)
                                                         <div class="text-success">Apstiprināts</div>
                                                     @endif
-                                                    @if($project->status == 3 && $project->projstatus == 2)
-                                                        <div><b>Darbibas</b></div>
-                                                        <div>
-                                                            <a href="/editcustomproject/{{$project->id}}" class="btn btn-primary">Rediģet</a>
-                                                        </div>
-                                                    @endif
                                                 </div>
                                                 <div class="col-12 col-md-8">
-                                                    <img src="storage/{{ $project->image}}" alt="img" height="100%" width="100%">
+                                                    @if($project->status == 3)
+                                                        <img src="storage/{{ $project->image}}" alt="img" height="100%" width="100%">
+                                                    @else
+                                                        <img src="storage/stored_projects/{{ $project->image}}" alt="img" height="100%" width="100%">
+                                                    @endif
+
                                                 </div>
                                             </div>
                                         </div>
