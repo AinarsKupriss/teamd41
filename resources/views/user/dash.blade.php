@@ -73,9 +73,10 @@
                                                 </div>
                                                 <div class="col-12 col-md-8">
                                                     @if($project->status == 1)
-                                                        <img src="storage/{{ $project->image}}" alt="img" height="100%" width="100%">
+                                                        <img src="/storage/{{ $project->image}}/" alt="" style="width: 100%;object-fit: cover;">
                                                     @else
-                                                        <img src="storage/stored_projects/{{ $project->image}}" alt="img" height="100%" width="100%">
+                                                        <img src="/storage/stored_projects/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">
+                                                        <img src="storage/{{ $project->image}}" alt="" style="width: 100%;object-fit: cover;">
                                                     @endif
                                                 </div>
                                             </div>
